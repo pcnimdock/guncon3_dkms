@@ -7,6 +7,7 @@ TODO:
 ### Build and install
 
 ```shell
+sudo apt install dkms
 sudo ./install.sh
 sudo modprobe guncon3
 ```
