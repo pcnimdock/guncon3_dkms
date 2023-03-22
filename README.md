@@ -27,3 +27,4 @@ sudo ./install.sh
 sudo modprobe guncon3
 sudo cp ./calibration/99-guncon3.rules /dev/udev/rules.d
 ```
+Python calibration script depends: pygame evdev wheel
