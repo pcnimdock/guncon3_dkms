@@ -245,16 +245,15 @@ static void guncon3_usb_irq(struct urb *urb) {
         //printk(KERN_ERR "Button:%08x",buttons&(~GUNCON3_BTN_OUT_RANGE)&(~GUNCON3_BTN_ONE_REFERENCE));
         input_report_abs(guncon3->input_device, ABS_RX, hat0_x);
         input_report_abs(guncon3->input_device, ABS_RY, hat0_y);
-        input_report_abs(guncon3->input_device, ABS_Z, hat1_x);
-        input_report_abs(guncon3->input_device, ABS_RZ, hat1_y);
+        input_report_abs(guncon3->input_device, ABS_HAT0X, hat1_x);
+        input_report_abs(guncon3->input_device, ABS_HAT0Y, hat1_y);
 
- 
         // main buttons
-        input_report_key(guncon3->input_device, BTN_TRIGGER, buttons & GUNCON3_TRIGGER); 
-        input_report_key(guncon3->input_device, BTN_A, buttons & GUNCON3_BTN_A1);
-        input_report_key(guncon3->input_device, BTN_B, buttons & GUNCON3_BTN_A2); 
-        input_report_key(guncon3->input_device, BTN_X, buttons & GUNCON3_BTN_A3);
-        input_report_key(guncon3->input_device, BTN_Y, buttons & GUNCON3_BTN_B1); 
+        input_report_key(guncon3->input_device, BTN_LEFT, buttons & GUNCON3_TRIGGER); 
+        input_report_key(guncon3->input_device, BTN_MIDDLE, buttons & GUNCON3_BTN_A1);
+        input_report_key(guncon3->input_device, BTN_RIGHT, buttons & GUNCON3_BTN_A2); 
+        input_report_key(guncon3->input_device, BTN_WEST, buttons & GUNCON3_BTN_A3);
+        input_report_key(guncon3->input_device, BTN_Z, buttons & GUNCON3_BTN_B1); 
         input_report_key(guncon3->input_device, BTN_TL, buttons & GUNCON3_BTN_B2); 
         input_report_key(guncon3->input_device, BTN_TR, buttons & GUNCON3_BTN_B3);
         input_report_key(guncon3->input_device, BTN_SELECT, buttons & GUNCON3_BTN_C1); 
@@ -428,17 +427,17 @@ static int guncon3_probe(struct usb_interface *intf,
     input_set_abs_params(guncon3->input_device, ABS_RY, 0, 255, 0, 0);
 
     // B-Stick
-    input_set_capability(guncon3->input_device, EV_ABS, ABS_Z); 
-    input_set_capability(guncon3->input_device, EV_ABS, ABS_RZ); 
-    input_set_abs_params(guncon3->input_device, ABS_Z, 0, 255, 0, 0);
-    input_set_abs_params(guncon3->input_device, ABS_RZ, 0, 255, 0, 0);
+    input_set_capability(guncon3->input_device, EV_ABS, ABS_HAT0X); 
+    input_set_capability(guncon3->input_device, EV_ABS, ABS_HAT0Y); 
+    input_set_abs_params(guncon3->input_device, ABS_HAT0X, 0, 255, 0, 0);
+    input_set_abs_params(guncon3->input_device, ABS_HAT0Y, 0, 255, 0, 0);
     
     // Buttons
-    input_set_capability(guncon3->input_device, EV_KEY, BTN_TRIGGER);//TRIGGER
-    input_set_capability(guncon3->input_device, EV_KEY, BTN_A); //A1
-    input_set_capability(guncon3->input_device, EV_KEY, BTN_B); //A2
-    input_set_capability(guncon3->input_device, EV_KEY, BTN_X); //A3
-    input_set_capability(guncon3->input_device, EV_KEY, BTN_Y); //B1
+    input_set_capability(guncon3->input_device, EV_KEY, BTN_LEFT);//TRIGGER
+    input_set_capability(guncon3->input_device, EV_KEY, BTN_MIDDLE); //A1
+    input_set_capability(guncon3->input_device, EV_KEY, BTN_RIGHT); //A2
+    input_set_capability(guncon3->input_device, EV_KEY, BTN_WEST); //A3
+    input_set_capability(guncon3->input_device, EV_KEY, BTN_Z); //B1
     input_set_capability(guncon3->input_device, EV_KEY, BTN_TL);//B2 
     input_set_capability(guncon3->input_device, EV_KEY, BTN_TR); //B3
     input_set_capability(guncon3->input_device, EV_KEY, BTN_SELECT); //C2 
