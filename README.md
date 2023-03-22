@@ -25,5 +25,5 @@ Execute ./calibrate.sh
 sudo apt install dkms
 sudo ./install.sh
 sudo modprobe guncon3
-sudo cp ../calibration/99-guncon3.rules /dev/udev/rules.d
+sudo cp ./calibration/99-guncon3.rules /dev/udev/rules.d
 ```
